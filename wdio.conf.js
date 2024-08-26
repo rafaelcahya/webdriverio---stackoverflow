@@ -21,7 +21,7 @@ exports.config = {
     // of the config file unless it's absolute.
     //
     specs: [
-        // ToDo: define location for spec files here
+        './index/tests/spec/questionPage/questionPage/filter.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -124,7 +124,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    // reporters: ['dot'],
+    reporters: ['spec'],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
