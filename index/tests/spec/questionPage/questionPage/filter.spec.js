@@ -2,7 +2,7 @@ import { expect } from "@wdio/globals";
 import QuestionPage from "../../../../pageObject/QuestionPage";
 import Cookies from "../../../../pageObject/Cookies";
 
-describe("Content", async () => {
+describe("Filter", async () => {
     beforeEach(async () => {
         await browser.maximizeWindow();
         await QuestionPage.openSOF();
@@ -296,8 +296,8 @@ describe("Content", async () => {
         await expect(QuestionPage.followingTagField).toHaveValue("");
     });
 
-    it.only("should be able to add more than 2 following tags", async () => {
-		const tags = ['javascript', 'java']
+    it("should be able to add more than 2 following tags", async () => {
+        const tags = ["javascript", "java"];
         await QuestionPage.filterBtn.waitForClickable();
         await QuestionPage.filterBtn.click();
         await QuestionPage.newestSort.waitForClickable();
@@ -305,26 +305,36 @@ describe("Content", async () => {
         await QuestionPage.followingTag.waitForClickable();
         await QuestionPage.followingTag.click();
         await QuestionPage.followingTagField.waitForEnabled();
-		for (const tag of tags) {
+        for (const tag of tags) {
             await QuestionPage.followingTagField.setValue(tag);
             await QuestionPage.tagSuggestion.waitForDisplayed();
             await QuestionPage.tagSuggestion.click();
         }
-		for (const tag of tags) {
-			const tagElements = await QuestionPage.tagSuggestionRendered
-			
-			let tagFound = false;
-			for (const tagElement of tagElements) {
-				const text = await tagElement.getText();
-				console.log(`Found tag: ${text}`)
-				if (text === tag) {
-					tagFound = true;
-					break;
-				}
-			}
-			console.log(`Expected tag: ${tag}`);
-			await expect(tagFound).toBe(true);
-		}
+        for (const tag of tags) {
+            const tagElements = await QuestionPage.tagSuggestionRendered;
+
+            let tagFound = false;
+            for (const tagElement of tagElements) {
+                const text = await tagElement.getText();
+                // console.log(`Found tag: ${text}`)
+                if (text === tag) {
+                    tagFound = true;
+                    break;
+                }
+            }
+            // console.log(`Expected tag: ${tag}`);
+            await expect(tagFound).toBe(true);
+        }
         await browser.pause(2000);
+    });
+
+    it("should be close the more filter popup", async () => {
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.cancelBtn.waitForClickable();
+        await QuestionPage.cancelBtn.click();
+        await expect(QuestionPage.filterContainer).not.toHaveClass(
+            "is-expanded"
+        );
     });
 });
