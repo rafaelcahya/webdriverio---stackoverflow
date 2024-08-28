@@ -209,6 +209,10 @@ class QuestionPage extends Page {
     get watchTagBtn(){
         return $("button[data-action='favorite']")
     }
+    
+    get unwatchTagBtn(){
+        return $("button[data-action='clear']")
+    }
 
     get ignoreTagBtn(){
         return $("button[data-action='ignore']")
@@ -218,16 +222,20 @@ class QuestionPage extends Page {
         return $("#signup-modal-container")
     }
 
-    get rssBtn(){
-        return $(".feed-link")
+    get searchField(){
+        return $(".js-search-field")
     }
 
-    get rssPopup(){
-        return $(".js-modal-dialog")
+    get searchPopup(){
+        return $("#top-search")
     }
 
-    openSOF() {
-        return super.openSOF("questions");
+    get searchHelpBtn(){
+        return $("//a[contains(text(), 'Search help')]")
+    }
+
+    get askQuestionBtn(){
+        return $("//a[contains(text(), 'Ask a question')]")
     }
 }
 
