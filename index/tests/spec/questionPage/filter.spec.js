@@ -1,11 +1,13 @@
 import { expect } from "@wdio/globals";
-import QuestionPage from "../../../../pageObject/QuestionPage";
-import Cookies from "../../../../pageObject/Cookies";
+import QuestionPage from "../../../pageObject/QuestionPage";
+import Cookies from "../../../pageObject/Cookies";
+import LoginPage from "../../../pageObject/LoginPage";
+import LeftSidebar from "../../../pageObject/LeftSidebar";
 
 describe("Filter", async () => {
     beforeEach(async () => {
         await browser.maximizeWindow();
-        await QuestionPage.openSOF();
+        await LoginPage.login();
         await Cookies.cookiesPopup.waitForDisplayed();
         await Cookies.acceptAllCookiesBtn.click();
     });
@@ -336,5 +338,80 @@ describe("Filter", async () => {
         await expect(QuestionPage.filterContainer).not.toHaveClass(
             "is-expanded"
         );
+    });
+
+    it('should be able to show save custom filter popup', async () => {
+        await LeftSidebar.questionBtn.click()
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.noAnswerFilter.waitForClickable()
+        await QuestionPage.noAnswerFilter.click()
+        await QuestionPage.mostVotesSort.waitForClickable()
+        await QuestionPage.mostVotesSort.click()
+        await QuestionPage.saveCustomFilterBtn.waitForClickable()
+        await QuestionPage.saveCustomFilterBtn.click()
+        await expect(QuestionPage.customFilterPopup).toBeDisplayed()
+    });
+
+    it('should be able to fill the title custom filter', async () => {
+        await LeftSidebar.questionBtn.click()
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.noAnswerFilter.waitForClickable()
+        await QuestionPage.noAnswerFilter.click()
+        await QuestionPage.mostVotesSort.waitForClickable()
+        await QuestionPage.mostVotesSort.click()
+        await QuestionPage.saveCustomFilterBtn.waitForClickable()
+        await QuestionPage.saveCustomFilterBtn.click()
+        await QuestionPage.titleCustomFilter.setValue("test123")
+        await expect(QuestionPage.titleCustomFilter).toHaveValue("test123")
+    });
+
+    it('should be able to close the custom filter popup', async () => {
+        await LeftSidebar.questionBtn.click()
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.noAnswerFilter.waitForClickable()
+        await QuestionPage.noAnswerFilter.click()
+        await QuestionPage.mostVotesSort.waitForClickable()
+        await QuestionPage.mostVotesSort.click()
+        await QuestionPage.saveCustomFilterBtn.waitForClickable()
+        await QuestionPage.saveCustomFilterBtn.click()
+        await QuestionPage.customFilterCloseBtn.waitForClickable()
+        await QuestionPage.customFilterCloseBtn.click()
+        await expect(QuestionPage.customFilterPopup).not.toBeDisplayed()
+    });
+
+    it('should be able to show error message if title is empty', async () => {
+        await LeftSidebar.questionBtn.click()
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.noAnswerFilter.waitForClickable()
+        await QuestionPage.noAnswerFilter.click()
+        await QuestionPage.mostVotesSort.waitForClickable()
+        await QuestionPage.mostVotesSort.click()
+        await QuestionPage.saveCustomFilterBtn.waitForClickable()
+        await QuestionPage.saveCustomFilterBtn.click()
+        await QuestionPage.titleCustomFilter.setValue("")
+        await QuestionPage.saveFilterBtn.waitForClickable()
+        await QuestionPage.saveFilterBtn.click()
+        await expect(QuestionPage.errorMsgEmptyTitle).toHaveText("Title is missing.")
+    });
+
+    it.only('should be able to show error message if title is more than 32 characters', async () => {
+        await LeftSidebar.questionBtn.click()
+        await QuestionPage.filterBtn.waitForClickable();
+        await QuestionPage.filterBtn.click();
+        await QuestionPage.noAnswerFilter.waitForClickable()
+        await QuestionPage.noAnswerFilter.click()
+        await QuestionPage.mostVotesSort.waitForClickable()
+        await QuestionPage.mostVotesSort.click()
+        await QuestionPage.saveCustomFilterBtn.waitForClickable()
+        await QuestionPage.saveCustomFilterBtn.click()
+        await QuestionPage.titleCustomFilter.setValue("Title is 48 characters too long.")
+        await QuestionPage.saveFilterBtn.waitForClickable()
+        await QuestionPage.saveFilterBtn.click()
+        await expect(QuestionPage.errorMsgEmptyTitle).toHaveText("Title is missing.")
+        await browser.pause(2000)
     });
 });

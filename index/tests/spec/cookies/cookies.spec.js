@@ -1,6 +1,6 @@
 import {expect} from "@wdio/globals"
-import Cookies from "../../../../pageObject/Cookies";
-import QuestionPage from "../../../../pageObject/QuestionPage";
+import Cookies from "../../../pageObject/Cookies";
+import QuestionPage from "../../../pageObject/QuestionPage";
 
 describe('Cookies', async () => {
     before(async () => {

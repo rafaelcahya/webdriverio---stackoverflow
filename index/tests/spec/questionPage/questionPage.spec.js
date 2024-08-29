@@ -1,5 +1,5 @@
 import { expect } from "@wdio/globals";
-import QuestionPage from "../../../../pageObject/QuestionPage";
+import QuestionPage from "../../../pageObject/QuestionPage";
 
 describe("Access Question Page", async () => {
     before(async () => {

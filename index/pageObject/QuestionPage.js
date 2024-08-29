@@ -2,74 +2,6 @@ import { $ } from "@wdio/globals";
 import Page from "./page";
 
 class QuestionPage extends Page {
-    get leftSidebar() {
-        return $("#left-sidebar");
-    }
-
-    get homeBtn() {
-        return $("a[href='/']");
-    }
-
-    get questionBtn() {
-        return $("#nav-questions");
-    }
-
-    get tagBtn() {
-        return $("a[href='/tags']");
-    }
-
-    get userBtn() {
-        return $("#nav-users");
-    }
-
-    get companiesBtn() {
-        return $("#nav-companies");
-    }
-
-    get labsBtn() {
-        return $("a[aria-controls='popover-labs-left-nav']");
-    }
-
-    get popoverLabs() {
-        return $("#popover-labs-left-nav");
-    }
-
-    get learnMoreAboutLabsBtn() {
-        return $("a[href='https://stackoverflow.co/labs/']");
-    }
-
-    get jobsBtn() {
-        return $("#nav-labs-jobs");
-    }
-
-    get discussionBtn() {
-        return $("#nav-labs-discussions");
-    }
-
-    get collectionBtn() {
-        return $("a[aria-controls='popover-discover-collectives']");
-    }
-
-    get collectionPopover() {
-        return $("#popover-discover-collectives");
-    }
-
-    get learnMoreAboutCollectiveBtn() {
-        return $("a[href='/collectives']");
-    }
-
-    get exploreAllCollectiveLink() {
-        return $("a[href='/collectives-all']");
-    }
-
-    get learnMoreBtn() {
-        return $("//a[contains(text(), 'Learn more')]");
-    }
-
-    get exploreTeamsBtn() {
-        return $("//a[contains(text(), 'Explore Teams')]");
-    }
-
     get newestFilterBtn() {
         return $("a[data-nav-value='Newest']");
     }
@@ -178,6 +110,30 @@ class QuestionPage extends Page {
         return $("button[data-se-uql-target='applyButton']");
     }
 
+    get saveCustomFilterBtn(){
+        return $("//button[contains(text(), 'Save custom filter')]")
+    }
+
+    get customFilterPopup(){
+        return $(".s-modal--dialog")
+    }
+
+    get customFilterCloseBtn(){
+        return $(".js-modal-close")
+    }
+
+    get titleCustomFilter(){
+        return $("#uql-name-field")
+    }
+
+    get errorMsgEmptyTitle(){
+        return $("div[contains(text(), 'Title is missing.)]")
+    }
+
+    get saveFilterBtn(){
+        return $("button[data-se-uql-target='saveButton']")
+    }
+
     get cancelBtn() {
         return $("button[data-action='se-uql#cancelEditor']");
     }
@@ -220,22 +176,6 @@ class QuestionPage extends Page {
 
     get signupModal(){
         return $("#signup-modal-container")
-    }
-
-    get searchField(){
-        return $(".js-search-field")
-    }
-
-    get searchPopup(){
-        return $("#top-search")
-    }
-
-    get searchHelpBtn(){
-        return $("//a[contains(text(), 'Search help')]")
-    }
-
-    get askQuestionBtn(){
-        return $("//a[contains(text(), 'Ask a question')]")
     }
 }
 

@@ -20,6 +20,7 @@ class LoginPage extends Page {
 
 	async login() {
 		await this.openLoginPage()
+		await this.emailField.waitForDisplayed();
 		await this.emailField.setValue("cahyaputraugira99@gmail.com");
 		await this.passwordField.setValue("yaya123123")
 		await this.loginBtn.waitForClickable()
