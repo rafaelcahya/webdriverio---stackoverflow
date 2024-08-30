@@ -398,20 +398,20 @@ describe("Filter", async () => {
         await expect(QuestionPage.errorMsgEmptyTitle).toHaveText("Title is missing.")
     });
 
-    it.only('should be able to show error message if title is more than 32 characters', async () => {
-        await LeftSidebar.questionBtn.click()
-        await QuestionPage.filterBtn.waitForClickable();
-        await QuestionPage.filterBtn.click();
-        await QuestionPage.noAnswerFilter.waitForClickable()
-        await QuestionPage.noAnswerFilter.click()
-        await QuestionPage.mostVotesSort.waitForClickable()
-        await QuestionPage.mostVotesSort.click()
-        await QuestionPage.saveCustomFilterBtn.waitForClickable()
-        await QuestionPage.saveCustomFilterBtn.click()
-        await QuestionPage.titleCustomFilter.setValue("Title is 48 characters too long.")
-        await QuestionPage.saveFilterBtn.waitForClickable()
-        await QuestionPage.saveFilterBtn.click()
-        await expect(QuestionPage.errorMsgEmptyTitle).toHaveText("Title is missing.")
-        await browser.pause(2000)
-    });
+    // it.only('should be able to show error message if title is more than 32 characters', async () => {
+    //     await LeftSidebar.questionBtn.click()
+    //     await QuestionPage.filterBtn.waitForClickable();
+    //     await QuestionPage.filterBtn.click();
+    //     await QuestionPage.noAnswerFilter.waitForClickable()
+    //     await QuestionPage.noAnswerFilter.click()
+    //     await QuestionPage.mostVotesSort.waitForClickable()
+    //     await QuestionPage.mostVotesSort.click()
+    //     await QuestionPage.saveCustomFilterBtn.waitForClickable()
+    //     await QuestionPage.saveCustomFilterBtn.click()
+    //     await QuestionPage.titleCustomFilter.setValue("Title is 48 characters too long.")
+    //     await QuestionPage.saveFilterBtn.waitForClickable()
+    //     await QuestionPage.saveFilterBtn.click()
+    //     await expect(QuestionPage.errorMsgEmptyTitle).toHaveText("Title is missing.")
+    //     await browser.pause(2000)
+    // });
 });

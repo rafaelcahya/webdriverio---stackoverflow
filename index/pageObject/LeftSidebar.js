@@ -69,34 +69,34 @@ class LeftSidebar extends Page {
     get exploreTeamsBtn() {
         return $("//a[contains(text(), 'Explore Teams')]");
     }
-	
-	get closePromotionBtn(){
-		return $("button[aria-label='Dismiss this promotion']")
-	}
 
-	get popoverTeamsBtn(){
-		return $("a[aria-controls='popover-teams-create-cta']")
-	}
+    get closePromotionBtn() {
+        return $("button[aria-label='Dismiss this promotion']");
+    }
 
-	get popoverTeams(){
-		return $("#popover-teams-create-cta")
-	}
+    get popoverTeamsBtn() {
+        return $("a[aria-controls='popover-teams-create-cta']");
+    }
 
-	get learnMoreAboutTeamsBtn(){
-		return $("//a[contains(text(), 'Learn more about Teams')]")
-	}
+    get popoverTeams() {
+        return $("#popover-teams-create-cta");
+    }
 
-	get exploreTeamsBtn(){
-		return $("//a[contains(text(), 'Explore Teams')]")
-	}
+    get learnMoreAboutTeamsBtn() {
+        return $("//a[contains(text(), 'Learn more about Teams')]");
+    }
 
-	get yourTeamsBtn(){
-		return $("button[aria-label='Teams were moved popover']")
-	}
+    get exploreTeamsBtn() {
+        return $("//a[contains(text(), 'Explore Teams')]");
+    }
 
-	get teamsWereMovedPopover(){
-		return $("#teams-were-moved-popover")
-	}
+    get yourTeamsBtn() {
+        return $("button[aria-label='Teams were moved popover']");
+    }
+
+    get teamsWereMovedPopover() {
+        return $("#teams-were-moved-popover");
+    }
 }
 
 export default new LeftSidebar();
